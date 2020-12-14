@@ -26,19 +26,22 @@ module.exports = {
   api: {
     prefix: "/api",
   },
-
-  // For JSON Web Tokens
-  jwt: {
+  //ovo sadrzi JWT token
+  jwt:{
+    //konfiguracijski parametri
     secret: process.env.JWT_SECRET,
-    algorithms: ["HS256"],
     expiresIn: process.env.JWT_DURATION || "1h",
-    exclude: {
-      path: [
+    algorithms: ["HS256"], //algoritam za potpisivanje tokena
+    exclude :{ // da bi se mogli ukljuciti na path, da ne trazi token za druge path-ove
+      path:[
         {
-          url: "/api/login", 
-          methods: ["POST"],
-        }
-      ]
-    }
+          url:"/api/login",
+          methods:["POST"],
+        },
+      ],
+    },
+  },
+  bcrypt:{
+    SALT_ROUNDS:12,
   },
 };
